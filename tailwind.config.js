@@ -2,9 +2,11 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,jsx,ts,tsx}"
+    "./src/**/*.{js,jsx,ts,tsx}", // include toate fișierele tale React
   ],
-  darkMode: "class", // activare dark mode cu clasa 'dark'
-  theme: { extend: {} },
+  darkMode: 'class', // <--- foarte important, clasa "dark" va controla tema
+  theme: {
+    extend: {},
+  },
   plugins: [],
 }

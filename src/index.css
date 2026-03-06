@@ -1,4 +1,15 @@
-/* Importurile Tailwind */
+/* Tailwind Directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* optional: fundal și text pentru Light/Dark mode */
+body {
+  @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+}
+
+/* optional: reset margin/padding pentru body */
+body, html {
+  margin: 0;
+  padding: 0;
+}
