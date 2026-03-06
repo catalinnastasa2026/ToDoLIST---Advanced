@@ -1,73 +1,32 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "./context/ThemeContext";
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 function App() {
-  const [task, setTask] = useState("");
-  const [tasks, setTasks] = useState([]);
 
-  const addTask = () => {
-    if (task === "") return;
+  const { theme, themes } = useContext(ThemeContext);
 
-     setTasks([...tasks, { text: task, completed: false }]);
-    setTask(""); // golește input
-  };
-const deleteTask = (indexToDelete) => {
-  const newTasks = tasks.filter((_, index) => index !== indexToDelete);
-  setTasks(newTasks);
-};
-const toggleTask = (indexToToggle) => {  // <<-- PASUL 3
-    const updatedTasks = tasks.map((t, index) => {
-      if (index === indexToToggle) {
-        return { ...t, completed: !t.completed };
-      }
-      return t;
-    });
-    setTasks(updatedTasks);
-  };
+  const currentTheme = themes[theme];
+
   return (
-    <main style={{ padding: "20px" }}>
-      <h1>Ziua mea trista – Todo List 📝</h1>
+    <div
+      style={{
+        background: currentTheme.background,
+        color: currentTheme.text,
+        minHeight: "100vh",
+        padding: "40px",
+        transition: "0.3s"
+      }}
+    >
+      <h1>Ziua 11 – Theme Switcher</h1>
 
-      <input
-        type="text"
-        placeholder="Adaugă un task..."
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-        onKeyDown={(e) => {
-    if (e.key === "Enter") {
-      addTask();
-    }
-  }}
-        style={{ padding: "10px", marginRight: "10px" }}
-      />
+      <ThemeSwitcher />
 
-      <button onClick={addTask}>
-        Adaugă
-      </button>
-<ul>
-  {tasks.map((t, index) => (
-    <li key={index}>
-      <input
-        type="checkbox"
-        checked={t.completed}
-        onChange={() => toggleTask(index)}
-      />
+      <p>
+        Acesta este un exemplu de schimbare de temă folosind React Context.
+      </p>
 
-      <span
-        style={{
-          textDecoration: t.completed ? "line-through" : "none",
-          marginLeft: "10px",
-        }}
-      >
-        {t.text}
-      </span>
-
-      <button onClick={() => deleteTask(index)} style={{ marginLeft: "10px" }}>
-        ❌
-      </button>
-    </li>
-  ))}
-</ul>
-    </main>
+    </div>
   );
 }
 

@@ -1,10 +1,9 @@
 function Footer({ year }) {
   return (
-    <footer style={{ marginTop: "20px", textAlign: "center", padding: "10px", background: "#e76b6b" }}>
-      <p>© {year} Nastasa Catalin</p>
+    <footer className="text-center py-6 text-gray-500 dark:text-gray-400">
+      &copy; {year} Nastasa Catalin. Toate drepturile rezervate.
     </footer>
   );
 }
-
 
 export default Footer;
